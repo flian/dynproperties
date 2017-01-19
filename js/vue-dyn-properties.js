@@ -54,8 +54,8 @@ Vue.component("dyn", {
     computed: {
         options: function () {
             var result = {};
-            _.each(this.skus, function (sku, index, list) {
-                _.each(sku.dyn, function (pValue, pKey, ll) {
+            _.each(this.skus, function (sku) {
+                _.each(sku.dyn, function (pValue, pKey) {
                     if (!_.has(result, pKey)) {
                         result[pKey] = [];
                     }
