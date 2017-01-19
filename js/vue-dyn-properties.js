@@ -9,7 +9,12 @@ Vue.component("dyn", {
         li {
             list-style: none;
         }
+        div .title{
+         float: left;
+         width: 75px;
+        }
         li a {
+            margin-left: 80px;
             position: relative;
             display: block;
             padding: 1px 21px;
