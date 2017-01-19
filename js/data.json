@@ -43,6 +43,16 @@
       "brand": "WD",
       "price": "103"
     }
+  },
+  {
+    "id": "sku005",
+    "dyn": {
+      "size": "L",
+      "color": "BLUE",
+      "brand": "WD",
+      "ONLY ME" : "其他人都木有。",
+      "price": "103"
+    }
   }
 ]
 
