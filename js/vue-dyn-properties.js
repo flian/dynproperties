@@ -37,77 +37,39 @@ Vue.component("dyn", {
             background: url(/images/inc-02.png) #FFF no-repeat right bottom;
         }
     </style>
-    <div class="charge grayBg"><span class="title">颜色：</span>
-                <ul>
-                  <li class="active"><a href="#">RED</a></li>
-                  <li><a href="#">BLACK</a></li>
-                </ul>
-    </div>
-     <div class="charge grayBg"><span class="title">尺寸：</span>
-                <ul>
-                  <li class="active"><a href="#">S</a></li>
-                  <li><a href="#">M</a></li>
-                  <li><a href="#">L</a></li>
-                </ul>
-    </div>
-    <div class="charge grayBg"><span class="title">兑换价格：</span>
-                <ul>
-                  <li class="active"><a href="#">20000消费积分</a></li>
-                  <li><a href="#">5000消费积分+3500元</a></li>
-                </ul>
+    
+    <div class="charge grayBg" v-for="(optionKey,optionValue) in options">
+    <span class="title" >{{optionKey}}：</span>
+       <ul>
+         <li class="" v-for="value in optionValue" @click="choose"><a href="#">{{value}}</a></li>
+       </ul>
     </div>
     `,
-    props: [],
+    props: ["skus"],
     data: function () {
         return {
-            skus: [
-                {
-                    id: "sku001",
-                    dyn: {
-                        size: "S",
-                        color: "RED",
-                        brand: "US",
-                        price: "99"
-                    }
-                },
-                {
-                    id: "sku002",
-                    dyn: {
-                        size: "S",
-                        color: "BLACK",
-                        brand: "CA",
-                        price: "100"
-                    }
-                },
-                {
-                    id: "sku003",
-                    dyn: {
-                        size: "M",
-                        color: "RED",
-                        brand: "MA",
-                        price: "99"
-                    }
-                },
-                {
-                    id: "sku004",
-                    dyn: {
-                        size: "M",
-                        color: "ANY",
-                        brand: "WT",
-                        price: "101"
-                    }
-                },
-                {
-                    id: "sku005",
-                    dyn: {
-                        size: "L",
-                        color: "BLUE",
-                        brand: "WD",
-                        price: "103"
-                    }
-                }
-            ]
+            selected: {}
         }
     },
-    methods: {}
+    computed: {
+        options: function () {
+            var result = {};
+            _.each(this.skus, function (sku, index, list) {
+                _.each(sku.dyn, function (pValue, pKey, ll) {
+                    if (!_.has(result, pKey)) {
+                        result[pKey] = [];
+                    }
+                    if (!_.contains(result[pKey], pValue)) {
+                        result[pKey].push(pValue);
+                    }
+                })
+            })
+            return result;
+        }
+    },
+    methods: {
+        choose:function () {
+            
+        }
+    }
 });

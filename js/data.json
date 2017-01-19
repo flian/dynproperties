@@ -1,0 +1,48 @@
+[
+  {
+    "id": "sku001",
+    "dyn": {
+      "size": "S",
+      "color": "RED",
+      "brand": "US",
+      "price": "99"
+    }
+  },
+  {
+    "id": "sku002",
+    "dyn": {
+      "size": "S",
+      "color": "BLACK",
+      "brand": "CA",
+      "price": "100"
+    }
+  },
+  {
+    "id": "sku003",
+    "dyn": {
+      "size": "M",
+      "color": "RED",
+      "brand": "MA",
+      "price": "99"
+    }
+  },
+  {
+    "id": "sku004",
+    "dyn": {
+      "size": "M",
+      "color": "ANY",
+      "brand": "WT",
+      "price": "101"
+    }
+  },
+  {
+    "id": "sku005",
+    "dyn": {
+      "size": "L",
+      "color": "BLUE",
+      "brand": "WD",
+      "price": "103"
+    }
+  }
+]
+
