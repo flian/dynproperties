@@ -90,9 +90,9 @@ Vue.component("dyn", {
     },
     methods: {
         choose: function (key, value) {
-            if(_.has(this.selected,key) && value == this.selected[key]){
+            if (_.has(this.selected, key) && value == this.selected[key]) {
                 Vue.delete(this.selected, key);
-            }else{
+            } else {
                 Vue.set(this.selected, key, value);
             }
         },
@@ -110,9 +110,9 @@ Vue.component("dyn", {
                 })
             }
             filter[key] = value;
-            if(!_.isEmpty(_.filter(this.skus, function (sku) {
-                return _.where([JSON.parse(JSON.stringify(sku.dyn))], filter).length > 0;
-            }))){
+            if (!_.isEmpty(_.filter(this.skus, function (sku) {
+                    return _.where([JSON.parse(JSON.stringify(sku.dyn))], filter).length > 0;
+                }))) {
                 return false;
             }
             return true;
