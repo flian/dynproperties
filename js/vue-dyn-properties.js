@@ -41,9 +41,13 @@ Vue.component("dyn", {
     <div class="charge grayBg" v-for="(optionKey,optionValue) in options">
     <span class="title" >{{optionKey}}：</span>
        <ul>
-         <li class="" v-for="value in optionValue" @click="choose"><a href="#">{{value}}</a></li>
+         <li :class="{'active':isActive(optionKey,value)}" v-for="value in optionValue" @click="choose(optionKey,value)"><a href="#">{{value}}</a></li>
        </ul>
     </div>
+    
+    <div> selected : <li v-for="(k,v) in selected">{{k}}:{{v}} </li></div>
+    
+    <div> sku left: <li v-for="sku in ids">{{sku.id}}:{{sku.dyn.price}} </li></div>
     `,
     props: ["skus"],
     data: function () {
@@ -65,11 +69,34 @@ Vue.component("dyn", {
                 })
             })
             return result;
+        },
+        ids: function () {
+            //as skus group properties in 'dyn', _.where should use same structure
+            //JSON.parse(JSON.stringify(this.selected))
+            //JSON.parse(JSON.stringify(sku.dyn)
+            var filter = {};
+            if (!_.isEmpty(this.selected)) {
+                _.each(this.selected, function (value, key) {
+                    filter[key] = value;
+                })
+            }
+            return _.filter(this.skus, function (sku) {
+                return _.where([JSON.parse(JSON.stringify(sku.dyn))], filter).length > 0;
+            })
         }
     },
     methods: {
-        choose:function () {
-            
+        choose: function (key, value) {
+            Vue.set(this.selected, key, value);
+        },
+        isActive: function (key, value) {
+            if (_.has(this.selected, key) && value == this.selected[key]) {
+                return true;
+            }
+            return false;
+        },
+        kvPair: function (key, value) {
+            return key + '_' + value;
         }
     }
 });
