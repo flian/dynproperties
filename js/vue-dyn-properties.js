@@ -91,7 +91,7 @@ Vue.component("dyn", {
     methods: {
         choose: function (key, value) {
             if(_.has(this.selected,key) && value == this.selected[key]){
-                Vue.set(this.selected, key, "");
+                Vue.delete(this.selected, key);
             }else{
                 Vue.set(this.selected, key, value);
             }
