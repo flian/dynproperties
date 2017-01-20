@@ -93,7 +93,11 @@ Vue.component("dyn", {
             if (_.has(this.selected, key) && value == this.selected[key]) {
                 Vue.delete(this.selected, key);
             } else {
-                Vue.set(this.selected, key, value);
+                if(!this.isDisable(key,value)){
+                    Vue.set(this.selected, key, value);
+                }else{
+                    console.info("according to current selecting, your can't select with given key/value pair " + key +":" + value);
+                }
             }
         },
         isActive: function (key, value) {
